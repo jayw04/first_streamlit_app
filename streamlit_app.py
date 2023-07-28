@@ -21,9 +21,7 @@ def get_fruityvice_data(this_fruit_choice):
   fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+this_fruit_choice)
   fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
   return fruityvice_normalized
-
-
-      
+  
 streamlit.header("Fruityvice Fruit Advice!")
 try:
   fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
@@ -53,7 +51,7 @@ def insert_row_snowflake(new_fruit):
        return "Thanks for adding new fruit" +new_fruit
       
 add_my_fruit = streamlit.text_input("What fruit would you like to add?")   
-if streamlit.button('Add a fruit to the list')
+if streamlit.button('Add a fruit to the list'):
   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
   back_from_function = insert_row_snowflake(add_my_fruit)
   streamlit.text(back_from_function)
